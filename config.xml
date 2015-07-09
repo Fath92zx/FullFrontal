@@ -1,0 +1,15 @@
+ <widget id="com.example.hello" version="0.0.1">
+        <name>Yoooooo... HelloWorld</name>
+        <description>
+            Education PhoneGAP
+        </description>
+        <author email="atoy92zx@gmail.com" href="">
+            FAthAzar
+        </author>
+        <content src="index.html" />
+        <access origin="*" />
+		<platform name="android">
+			<icon src="images/icon.png" />
+		</platform>
+		 
+    </widget>
