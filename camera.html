@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+
+	<style>
+ 
+		
+	</style>
+	<script src="cordova.js"></script>
+	<script>
+		function pageLoaded(){
+			document.addEventListener("deviceready",phoneReady,false);
+		
+		
+		}
+		
+		function phoneReady(){
+		
+		
+		}
+		
+		function initCamera(){
+			var option = {
+				quality:80,
+				destinationType:FILE_URL,	//FILE_URL , NATIVE_URIs ,DATA_URL
+				allowEdit:true;
+				encodingType:JPEG,
+				PictureSourceType:CAMERA	//PHOTOLIBRARY,CAMERA,SAVEDPHOTOALBUM :byDefault CAMERA
+				
+			
+			}
+		
+			navigator.camera.getPicture(onSuccess,onFail,option);
+		
+		}
+		function onSuccess(imageURL){//when camera connection success
+			//document.getElementById("pic").src = "data:image/jpeg;base64," + imageURL;
+			document.getElementById("pic").src = imageURL; // when use FILE_URL on destinationType
+		}
+		function onFail(){//when camera connection fail
+			//messsage = reason failure
+		}
+		
+	
+	
+	</script>
+	
+	
+
+</head>
+<body onload="pageLoaded()">
+
+<input type="button" value="let's Skodeng" onclick="initCamera()" />
+<hr/> 
+<img src="" id="pic" height="400" />
+
+</body>
+</html>
