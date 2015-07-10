@@ -22,10 +22,10 @@
 		function initCamera(){
 			var option = {
 				quality:80,
-				destinationType:FILE_URL,	//FILE_URL , NATIVE_URIs ,DATA_URL
+				destinationType:FILE_URI,	//FILE_URI , NATIVE_URI ,DATA_URL
 				allowEdit:true;
 				encodingType:JPEG,
-				PictureSourceType:CAMERA	//PHOTOLIBRARY,CAMERA,SAVEDPHOTOALBUM :byDefault CAMERA
+				pictureSourceType:CAMERA	//PHOTOLIBRARY,CAMERA,SAVEDPHOTOALBUM :byDefault CAMERA
 				
 			
 			}
@@ -37,7 +37,7 @@
 			//document.getElementById("pic").src = "data:image/jpeg;base64," + imageURL;
 			document.getElementById("pic").src = imageURL; // when use FILE_URL on destinationType
 		}
-		function onFail(){//when camera connection fail
+		function onFail(message){//when camera connection fail
 			//messsage = reason failure
 		}
 		
