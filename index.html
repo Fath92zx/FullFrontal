@@ -3,140 +3,45 @@
 <head>
 
 	<style>
-	div{
-		border: solid 1px black;
-		padding: 5px;
-	
-	}
-	
-	@media screen and (orientation:landscape){
-		input[type = 'text']{
-			width:6rem;
-		}
-		div{
-			width:200px;
-			display:inline-block;
-		}
-	
-	}
+ 
 		
 	</style>
-	<script src="script/jquery-2.1.4.js"></script>
+	<script src="cordova.js"></script>
 	<script>
-	function calculate(){
-			var netHour = hr.value;
-			var val = $( "#pos option:selected" ).val();
-			var textPos = $( "#pos option:selected" ).text();
-			var OT = 0;
-			
-			if(netHour > 40){
-				OT = netHour - 40;
-				netHour = 40;
-			}
-			
-			var PAID = netHour * val;
-			var nettOT = (OT * val) * 1.5;
-			var nettPAID = PAID + nettOT;
-			
-			var taxx = 0;
-			
-			if(textPos == "Staff"){
-			$("#tax").prop("disabled", true);			
-			}
-			else{
-				$("#tax").prop("disabled", false);	
-				if(document.getElementById('tax').checked) {
-					taxx = 0.06;
-				} 
-				else {
-					taxx = 0;
-				}
-			}
-			
-			var TAXET = nettPAID * taxx;
-			
-			var res = nettPAID + TAXET;
-			
-			$("#nettPAY").html(nettPAID);
-			$("#exp").html(TAXET);
-			$("#result").html(res);
-	}
-	
-	$(window).load(function(){
-		hr.onkeyup = function(){
-			calculate();	
+		function pageLoaded(){
+			document.addEventListener("deviceready",phoneReady,false);
+		
+		
 		}
 		
-		$("#pos").on('change', function() {
-			calculate();
-		});
+		function phoneReady(){
 		
-		$("#tax").on('change', function() {
-			calculate();
-		});		
-	});
+		
+		}
+		
+		function initCamera(){
+			navigator.camera.getPicture(onSuccess,onFail,{quality:80});
+		
+		}
+		function onSuccess(imageURL){//when camera connection success
+			document.getElementById("pic").src = "data:image/jpeg;base64," + imageURL
+		}
+		function onFail(){//when camera connection fail
+			//messsage = reason failure
+		}
+		
 	
-	/*function isNumberKey(evt){
-		var charCode = (evt.which) ? evt.which : event.keyCode
-			if (charCode > 31 && (charCode < 48 || charCode > 57))
-			return false;
-		return true;
-	}*/
 	
-
 	</script>
+	
+	
 
 </head>
-<body>
-<div>
-<form action="#">
-<table id="table1">
-<tr>
-<td>Hour  </td><td>:</td><td><input type="text" id="hr" onkeypress="return isNumberKey(event)"  autocomplete="off"/> </td>
-</tr>
-<tr>
-<td>position  </td><td>:</td><td><select id="pos">
-<option value="6.5">Staff</option>
-<option value="7.5">Supervisor</option>
-<option value="15.0">Manager</option>
-</select>
- </td>
-</tr>
-<tr>
-<td>tax Exempt </td><td>:</td><td> <input type="checkbox" id="tax"/> </td>
-</tr>
-</table>
-</form>
-</div>
+<body onload="pageLoaded()">
 
-<div>
-<table id="table2">
-<tr>
-<td>Nett PAY </td><td>:</td><td><span id="nettPAY"></span></td>
-</tr>
-<tr>
-<td>TAX </td><td>:</td><td><span id="exp"></span></td>
-</tr>
-<tr>
-<td>PAYMENT </td><td>:</td><td><span id="result"></span></td>
-</tr>
-</table>
-</div>
-
-
+<input type="button" value="let's Skodeng" onclick="initCamera()" />
+<hr/> 
+<img src="" id="pic" height="400" />
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
